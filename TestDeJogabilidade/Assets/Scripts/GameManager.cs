@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public GameState State;
     public int enemysOfTower = 0;
     public int enemysInTower = 0;
-    public Enemy[] EnemyInTower;
+    public static List<Enemy> EnemyInTower;
     public static int CurrentWeapon = 0;
     public static int Money;
     public static int Pontos;

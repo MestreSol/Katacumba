@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviour
     }
     public void EnterInTower() {
         Enter.Play();
+        GameManager.EnemyInTower.Add(this);
         Destroy(gameObject,1f);
         
     }
