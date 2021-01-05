@@ -13,6 +13,8 @@ TagManager:
   - Ponteiro
   - Enemy
   - VisualEfect
+  - Tower
+  - Parede
   layers:
   - Default
   - TransparentFX

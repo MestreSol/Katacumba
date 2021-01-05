@@ -7,8 +7,7 @@ public enum GameState{
     Menu,
     Loja,
     NormalTopTower,
-    NormalInTower,
-    NormalOfTower
+    NormalInTower
 }
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +19,7 @@ public class GameManager : MonoBehaviour
     public static int Money;
     public static int Pontos;
     public AudioSource Musica;
+
     public Text PontosText;
     public Text MoneyText;
     public GameObject PabloVitar;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         State = GameState.NormalTopTower;
         DontDestroyOnLoad(Musica);
-
+        DontDestroyOnLoad(gameObject);
     }
 
     
@@ -45,13 +45,13 @@ public class GameManager : MonoBehaviour
             if (State == GameState.NormalTopTower) {
                 State = GameState.NormalInTower;
                 SceneManager.LoadScene("InTower");
-            }
+            } 
         }
         if (Input.GetKeyDown("w")) {
-            if (State == GameState.NormalInTower){
+            if (State == GameState.NormalInTower) {
                 State = GameState.NormalTopTower;
                 SceneManager.LoadScene("TopTower");
-            }
+            } 
         }
     }
     public void AbrirLoja()

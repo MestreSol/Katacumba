@@ -14,6 +14,9 @@ public class Enemy : MonoBehaviour
     public GameObject die;
     public GameObject pivo;
     public AudioSource Spwn;
+    public AudioSource Dmg;
+    public AudioSource DieE;
+    public AudioSource Enter;
     public int Vida = 0;
     private int CurEnemy = 0;
     
@@ -53,29 +56,31 @@ public class Enemy : MonoBehaviour
             Move(CurEnemy);
         }
         else {
+            Enter.Play();
             EnterInTower();
         }
         if (Vida <= 0) {
+            
             Die();
             
         }
         
     }
     public void Die() {
-   
+        DieE.Play();
         GameObject Mo = (GameObject)Instantiate(die, pivo.transform.position, Quaternion.identity) ;
         GameManager.Money += 200;
         GameManager.Pontos += 1;
         Vector2 a = new Vector2(0,1);
         Mo.GetComponent<Rigidbody2D>().velocity =  a*2;
         anim.SetTrigger("Die");
-        Destroy(Mo,0.5f);
+        Destroy(Mo,1f);
         Destroy(gameObject);
 
     }
     public void EnterInTower() {
-        
-        Destroy(gameObject);
+        Enter.Play();
+        Destroy(gameObject,1f);
         
     }
 
@@ -84,6 +89,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("Colidiu");
         if (collision.gameObject.tag == "Tiro")
         {
+            Dmg.Play();
             Debug.Log("ComBala");
             Vida -= BulletHolder.Instance.Bullet[Bullet.Cur].Dano;
         }
